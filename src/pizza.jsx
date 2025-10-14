@@ -1,11 +1,13 @@
 import React from 'react'
-import '../public/data.js'
-const Pizaa = () => {
+import './data.js'
+const Pizaa = (props) => {
   return (
-    <div>
-        <img src="pizzas/spinaci.jpg" alt="spinaci" />
-        <h2>Pizaa Spinaci</h2>
-        <p>tomato, mozarella, spinach, and ricotta cheese</p>
+    <div className='pizza'>
+        <img src={props.src} alt="spinaci" />
+        <h3>{props.type}</h3>
+        <p>{props.component}</p>
+        <p>{props.number}</p>
+        
     </div>
   )
 }
