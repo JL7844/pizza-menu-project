@@ -1,6 +1,6 @@
 import React from 'react'
-import Pizaa from './pizza.jsx'
-import './data.js'
+// import Pizza from './pizza.jsx'
+import pizzaData from './data.js'
 const App = () => {
   return (
 
@@ -23,42 +23,74 @@ const App = () => {
     
 }
 function Menu(){
+  const pizzas = pizzaData;
   return (
 <main className='menu'>
-   {/* <p>---------</p> */}
   <p className=''>OUR MENU</p>
-  {/* <p>---------</p> */}
+   {pizzas.length > 0 ?  <>
    <p>authentic Italian cuisine. 6 creative dishes to choose from. All from our stone oven, all organic, all delicious.</p>
-   <div className='pizzas'>
- <Pizaa type="Focaccia" component="bread with italian olive oil and rosinnary" number={6} src="pizzas/focaccia.jpg"/>
-  <Pizaa type="Pizza spinaci" component="tomato, mozarila, spinach, and recotta cheese" number={12} src="pizzas/funghi.jpg"/>
-  <Pizaa type="Pizza solamino" component="tomato, mozarila, and pepperoni" number="SOLD OUT" src="pizzas/margherita.jpg"/>
-   <Pizaa type="Pizza morgharita" component="tomato and morzarita" number={10}src="pizzas/prosciutto.jpg"/>
-  <Pizaa type="Pizza funghi" component="tomato, mozarila, mushrooms and onion" number={12} src="pizzas/salamino.jpg"/>
-  <Pizaa type="Pizza prosciutto" component="tomato, mozarila, and pepperoni" number={18} src="pizzas/spinaci.jpg"/>
-   </div>
+   <ul  className='pizzas'> 
+    {pizzas.map(pizza => (
+       <Pizza pizzaObj = {pizza}/>
+      
+    ))}
+    
+   </ul> 
+   </>: <p className='notWorking'>we are still working on the menu. come back later!!!</p>}
  
   </main>
   );
   
 }
+function Pizza({pizzaObj}){
+  // if(pizzaObj.soldOut) return null;
+ 
+  return(
+      <li className ={`pizza ${pizzaObj.soldOut ? 'sold-out': ''}`} >
+        <img src={pizzaObj.photoName} alt={pizzaObj.name} />
+        <div>
+            <h3>{pizzaObj.name}</h3>
+            <p>{pizzaObj.ingredients}</p>
+             {/* {pizzaObj.soldOut ? (<span>SOLD OUT</span>) : <span>{pizzaObj.price}</span>} */}
+            <span>{pizzaObj.soldOut ? 'SOLD OUT' : pizzaObj.price}</span>
+        </div>
+       
+        
+    </li>
+  );
+
+}
 function Footer(){
-  const hours = new Date().getHours();
-  const openHours = 12;
-  const closeHours = 22;
-  const isOpen = hours >= openHours && hours <= closeHours;
-  console.log(isOpen);
+  const hour = new Date().getHours();
+  const openHour = 6;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
   return(
  <div className='footer'>
 
-     <p>{new Date().toLocaleTimeString()}.we're open till 22:00. come visit us or order online.</p>
-        <button className='btn'>order now</button>
+     {isOpen ?
+       <Order open={openHour} close={closeHour}/> : <p className='notWorking'>we're happy to welcome you between {openHour}:00 and {closeHour}:00</p>
+          
+          }
+        
   </div>
   );
  
 
 }
 
+function Order({close, open}){
+  return (
+<div className='order'>
+            <p>
+            we're open from {open}:00 to {close}:00. come visit us or order online.
+            </p>
+              <button className='btn'>order now</button>
+        </div>
+
+  );
+ 
+}
  
 
 export default App

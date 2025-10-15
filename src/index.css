@@ -23,7 +23,7 @@ body {
 
 .container {
   max-width: 80rem;
-  margin: 0 auto;
+  margin: 0, auto;
 
   display: flex;
   flex-direction: column;
@@ -177,7 +177,9 @@ body {
 .btn:hover {
   background-color: #e9bb24;
 }
-
+.notWorking{
+  color: red;
+}
 /*
 SPACING SYSTEM (px)
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 40 / 48 / 64 / 80 / 96 / 128

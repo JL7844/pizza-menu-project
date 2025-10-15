@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'
-import './index.css'
-const pizzaData = [
+import '../src/index.css'
+ const pizzaData = [
   {
     name: "Focaccia",
     ingredients: "Bread with italian olive oil and rosemary",
@@ -42,6 +42,7 @@ const pizzaData = [
     ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
     price: 18,
     photoName: "pizzas/prosciutto.jpg",
-    soldOut: false,
-  },
+    soldOut: true,
+  }
 ];
+export default pizzaData;
